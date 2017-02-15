@@ -7,6 +7,7 @@ GLdouble radius = 1;
 double pi = atan(1) * 4;
 double theta1 = 0;
 double earthOrbitRadius = 4;
+double moonOrbitRadius = 1;
 double systemDepth = -20;
 double X=0, Y=0, Z = -20;
 int earthStepSize = 60;
@@ -50,11 +51,16 @@ void display(void)
 	gluLookAt(1, 1, 1, X, Y, Z, 0, 0, 0);
 	//earth
 	glLoadIdentity();
-	glTranslatef(X + earthOrbitRadius*cos(theta1), Y + earthOrbitRadius*sin(theta1)/2, Z);
+	double ex = X + earthOrbitRadius*cos(theta1);
+	double ey = Y + earthOrbitRadius*sin(theta1) / 2;
+	glTranslatef(ex,ey, Z);
 	glColor3f(0, 0, 1);
 	glutWireSphere(radius / 2, 50, 50);
 
-
+	glLoadIdentity();
+	glTranslatef(ex, ey + moonOrbitRadius*cos(theta1 * 3), Z + moonOrbitRadius*sin(theta1 *3));
+	glColor3f(0.8, 0.8, 0.8);
+	glutSolidSphere(radius / 4, 25, 25);
 
 	// clear the identity matrix.
 	glLoadIdentity();
@@ -67,7 +73,7 @@ void display(void)
 	// scaling transfomation 
 	glScalef(1.0, 1.0, 1.0);
 	// built-in (glut library) function , draw you a sphere.
-	glutWireSphere(radius, 50, 50);
+	glutSolidSphere(radius, 50, 50);
 	//glutSolidSphere(radius, 5, 5);
 	// Flush buffers to screen
 
