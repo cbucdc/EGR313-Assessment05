@@ -1,7 +1,14 @@
 #include <windows.h>  // for MS Windows
 #include <GL/glut.h>  // GLUT, include glu.h and gl.h
 #include <math.h>
-//Sphere
+/*
+Richard Christensen
+Christopher Chen
+John Syfacunda
+Taylor Moe
+*/
+
+
 GLfloat xRotated, yRotated, zRotated;
 GLdouble radius = 1;
 double pi = atan(1) * 4;
